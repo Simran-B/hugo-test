@@ -1,0 +1,12 @@
+{{ $inner := .Inner }}
+
+<!--<pre>{{ $inner | html }}</pre>-->
+
+{{ range (split (.Get 0) " ") }}
+<div>
+  {{/* This causes a null pointer crash, but why?
+    <div class="version version-{{ replace . "." "_" }}">{{ $inner | markdownify }}</div>
+  */}}
+  <div class="version version-{{ replace . "." "_" }}">{{ $inner | markdownify }}</div>
+</div>
+{{ end }}
